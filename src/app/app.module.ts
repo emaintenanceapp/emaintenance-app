@@ -22,11 +22,17 @@ import { TiposManutencoesService } from './tipos-manutencoes.service';
 import { TiposEquipamentosService } from './tipos-equipamentos.service';
 import { FabricantesService } from './fabricantes.service';
 import { CriticidadesService } from './criticidades.service';
+import { UsuarioService } from './usuario.service';
+import { UsuariosModule } from './usuarios/usuarios.module';
+import { CriticidadesListaComponent } from './criticidades/criticidades-lista/criticidades-lista.component';
+import { CriticidadesFormComponent } from './criticidades/criticidades-form/criticidades-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CriticidadesListaComponent,
+    CriticidadesFormComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,8 @@ import { CriticidadesService } from './criticidades.service';
     TiposEquipamentosModule,
     TiposManutencoesModule,
     HistoricoEquipamentosModule,
-    HistoricoManutencoesModule
+    HistoricoManutencoesModule,
+    UsuariosModule
   ],
   providers: [
     EquipamentosService,
@@ -49,7 +56,8 @@ import { CriticidadesService } from './criticidades.service';
     TiposManutencoesService,
     TiposEquipamentosService,
     FabricantesService,
-    CriticidadesService
+    CriticidadesService,
+    UsuarioService
   ],
   bootstrap: [
     AppComponent
