@@ -8,7 +8,8 @@
         <div class="row">
             <div class="col-md-4">
                 <button type="button" 
-                        class="btn btn-warning ml-1">
+                       routerLink="/usuarios-form"
+                       class="btn btn-warning ml-1">
                     <i class="fa fa-plus"></i> Novo
                 </button>
             </div>
@@ -30,10 +31,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
-                        <td>teste</td>
-                        <td>teste</td>
-                        <td>teste</td>
+                    <tr *ngFor="let usuario of usuarios" >
+                        <td>{{ usuario.nome }} </td>
+                        <td>{{ usuario.email }} </td>
+                        <td>{{ usuario.status == true ? "Ativo":"Inativo" }} </td>
                     </tr>
                 </tbody>
             </table>
