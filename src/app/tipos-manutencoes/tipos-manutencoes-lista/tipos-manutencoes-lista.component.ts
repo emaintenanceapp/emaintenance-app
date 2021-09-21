@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TiposManutencoesService } from 'src/app/tipos-manutencoes.service';
+import { TipoManutencao } from '../tipos-manutencoes-form/tipo-manutencao';
 
 @Component({
   selector: 'app-tipos-manutencoes-lista',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TiposManutencoesListaComponent implements OnInit {
 
-  constructor() { }
+  tiposManutencoes: TipoManutencao[] = [];
+
+  constructor(private service: TiposManutencoesService) { }
 
   ngOnInit(): void {
+    /**this.service
+    .getEquipamentos()
+    .subscribe( response => this.equipamentos = response );*/
+    this.service
+    .getTipoManutencaos()
+    .subscribe( response => this.tiposManutencoes = response );
+
+    console.log(this.tiposManutencoes);
   }
 
 }

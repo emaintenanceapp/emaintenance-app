@@ -1,1 +1,43 @@
-<p>tipos-equipamentos-lista works!</p>
+<h1 class="mt-4">Listagem de Tipo de Equipamentos</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrum-bitem active">Home / Tipo de Equipamentos</li>
+</ol>
+<div class="container">
+    <form >
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <button type="button"
+                        routerLink="/tipos-equipamentos-form"
+                        class="btn btn-warning ml-1">
+                    <i class="fa fa-plus"></i> Novo
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <br />
+    <div class="row">
+        <div class="alert alert-warning" role="alert" >
+
+        </div>
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Tipo de Equipamentos</th>
+                        <th>Descrição</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tipoEquipamento of tiposEquipamentos" >
+                        <td>{{ tipoEquipamento.nome }} </td>
+                        <td>{{ tipoEquipamento.descricao }} </td>
+                        <td>{{ tipoEquipamento.status == true ? "Ativo":"Inativo" }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

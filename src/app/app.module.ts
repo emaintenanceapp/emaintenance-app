@@ -24,21 +24,19 @@ import { FabricantesService } from './fabricantes.service';
 import { CriticidadesService } from './criticidades.service';
 import { UsuarioService } from './usuario.service';
 import { UsuariosModule } from './usuarios/usuarios.module';
-import { CriticidadesListaComponent } from './criticidades/criticidades-lista/criticidades-lista.component';
-import { CriticidadesFormComponent } from './criticidades/criticidades-form/criticidades-form.component';
+import { CriticidadesModule } from './criticidades/criticidades.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    CriticidadesListaComponent,
-    CriticidadesFormComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     TemplateModule, 
+    CriticidadesModule,
     EquipamentosModule,
     ManutencoesModule,
     FabricantesModule,

@@ -27,7 +27,8 @@
                     <i class="fa fa-search"></i> Consultar
                 </button>
 
-                <button type="button" 
+                <button type="button"
+                        routerLink="/fabricantes-form" 
                         class="btn btn-warning ml-1">
                     <i class="fa fa-plus"></i> Novo
                 </button>
@@ -45,19 +46,15 @@
                 <thead>
                     <tr>
                         <th>Fabricante</th>
-                        <th>Descrição</th>
-                        <th>CNPJ</th>
-                        <th>Data do Cadastro</th>
+                        <th>E-mail</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
-                        <td>teste</td>
-                        <td>teste</td>
-                        <td>teste</td>
-                        <td>teste</td>
-                        <td>teste</td>
+                    <tr *ngFor="let fabricante of fabricantes" >
+                        <td>{{ fabricante.nome }} </td>
+                        <td>{{ fabricante.email }} </td>
+                        <td>{{ fabricante.status == true ? "Ativo":"Inativo" }} </td>
                     </tr>
                 </tbody>
             </table>

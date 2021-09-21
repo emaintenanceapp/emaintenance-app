@@ -7,7 +7,8 @@
         <br />
         <div class="row">
             <div class="col-md-4">
-                <button type="button" 
+                <button type="button"
+                        routerLink="/tipos-manutencoes-form"
                         class="btn btn-warning ml-1">
                     <i class="fa fa-plus"></i> Novo
                 </button>
@@ -30,10 +31,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
-                        <td>teste</td>
-                        <td>teste</td>
-                        <td>teste</td>
+                    <tr *ngFor="let tipoManutencao of tiposManutencoes" >
+                        <td>{{ tipoManutencao.nome }} </td>
+                        <td>{{ tipoManutencao.descricao }} </td>
+                        <td>{{ tipoManutencao.status == true ? "Ativo":"Inativo" }} </td>
                     </tr>
                 </tbody>
             </table>
