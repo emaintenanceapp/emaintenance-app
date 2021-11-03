@@ -1,0 +1,81 @@
+<h1 class="mt-4">Usuários</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrum-bitem active">Home / Consulta </li>
+</ol>
+<div class="container">
+    <form>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="inputNome">Nome Usuário:</label>
+                <input type="text"
+                       name="nome" class="form-control"
+                       id="inputNome">
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-search"></i> Consultar
+                </button>
+
+                <button type="button" 
+                        routerLink="/users/form"
+                        class="btn btn-warning ml-1">
+                    <i class="fa fa-plus"></i> Novo
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <br />
+    <div class="row">
+        <div class="alert alert-warning" role="alert" >
+  
+        </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Login</th>
+                        <th>Nome do Usuário</th>
+                        <th>CPF</th>
+                        <th>Data de Cadastro</th>
+                        <th>Role</th>
+                        <th>Data de Cadastro</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.cpf }}</td>
+                        <td>{{ user.dataCadastro }}</td>
+                        <td>
+                            <span *ngFor="let role of user.roles">
+                                {{ role.name }}
+                            </span> 
+                        </td>
+                        <td>{{ user.active===true?'Ativo':'Inativo' }}</td>
+                        <td>
+                            <button class="btn btn-primary" 
+                                    routerLink="/users/form/{{ user.id }}">
+                                <i class="fa fa-edit"></i>
+                            </button>
+
+                            <button class="btn btn-danger" (click)="preparaDelecao(user)" 
+                                    data-toggle="modal" data-target="#modalDelecao">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>

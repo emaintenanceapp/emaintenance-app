@@ -1,0 +1,77 @@
+<h4 class="mt-4">Equipamentos</h4>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrum-bitem active">Home / Equipamentos</li>
+</ol>
+<div class="container">
+    <form #consultaForm="ngForm" (submit)="consultar()">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="inputNome">Nome do Equipamento:</label>
+                <input type="text"  
+                       name="nome" class="form-control"
+                       id="inputNome">
+            </div>
+            <div class="col-md-6">
+                <label for="inputNome">Número do Patrimônio:</label>
+                <input type="text" 
+                       name="numeroPatrimonio" class="form-control"
+                       id="inputNome">
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-search"></i> Consultar
+                </button>
+
+                <button type="button" 
+                        routerLink="/equipamentos/form"
+                        class="btn btn-warning ml-1">
+                    <i class="fa fa-plus"></i> Novo
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <br />
+    <div class="row">
+        <div class="alert alert-warning" role="alert" *ngIf="message">
+            {{ message }}   
+        </div>
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Equipamento</th>
+                        <th>Descrição</th>
+                        <th>Nº do Patrimônio</th>
+                        <th>Nº da TAG</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let equipamento of equipamentos" >
+                        <td>{{ equipamento.nome }} </td>
+                        <td>{{ equipamento.descricao }} </td>
+                        <td>{{ equipamento.numeroPatrimonio }} </td>
+                        <td>{{ equipamento.numeroTag }} </td>
+                        <td>{{ equipamento.status == true ? "Ativo":"Inativo" }} </td>
+                        <td>
+                            <button class="btn btn-primary">
+                                <i class="fa fa-edit"></i>
+                            </button>
+
+                            <button class="btn btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

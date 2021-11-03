@@ -1,0 +1,162 @@
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">Core</div>
+                <a class="nav-link" href="index.html">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    Dashboard
+                </a>
+                <div class="nav-link">CADASTROS</div>
+                <a class="nav-link collapsed" routerLink="/manutencoes" 
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-columns"></i>
+                    </div>
+                    Armário
+                </a>
+                <a class="nav-link collapsed" routerLink="/manutencoes" 
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-columns"></i>
+                    </div>
+                    Prateleiras
+                </a>
+                <a class="nav-link collapsed" routerLink="/manutencoes" 
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-columns"></i>
+                    </div>
+                    Balcão
+                </a>
+                <a class="nav-link collapsed" routerLink="/equipamentos" 
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-columns"></i>
+                    </div>
+                    Equipamentos
+                </a>
+                <a class="nav-link collapsed" routerLink="/manutencoes" 
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-columns"></i>
+                    </div>
+                    Manutenções
+                </a>
+                <a class="nav-link collapsed" routerLink="/manutencoes" 
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-columns"></i>
+                    </div>
+                    Cotação de Preços
+                </a>
+                <a class="nav-link collapsed" routerLink="/manutencoes" 
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-columns"></i>
+                    </div>
+                    Histórico de Vibilidade/Estratégia de Manutenção
+                </a>
+                <a class="nav-link collapsed" routerLink="/clientes" 
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-columns"></i>
+                    </div>
+                    Clientes
+                </a>
+                <a class="nav-link collapsed" routerLink="/servicos-prestados" 
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-address-card"></i>
+                    </div>
+                    Serviços Prestados
+                </a>
+                <a class="nav-link collapsed" routerLink="/canal-direto" 
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-columns"></i>
+                    </div>
+                    Canal Direto
+                </a>
+                <a class="nav-link collapsed" href="#" *ngIf="role"
+                    data-toggle="collapse" data-target="#collapsePagesSeguranca" 
+                    aria-expanded="false" aria-controls="collapsePagesSeguranca">
+                    <div class="sb-nav-link-icon" >
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    SEGURANÇA
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapsePagesSeguranca" aria-labelledby="headingTwo" data-parent="#sidenavAccordion" >
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                        <a class="nav-link collapsed" routerLink="/users" 
+                            data-toggle="collapse" data-target="#collapseLayouts" 
+                            aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-address-card"></i>
+                            </div>
+                            Usuários
+                        </a>
+                        <a class="nav-link collapsed" href="#" 
+                            data-toggle="collapse" data-target="#pagesCollapseAuth" 
+                            aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            Autenticação
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="pagesCollapseAuth" 
+                            aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="login.html">Login</a>
+                                <a class="nav-link" href="register.html">Registro</a>
+                                <a class="nav-link" href="password.html">Recuperação de Senha</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" 
+                            data-toggle="collapse" data-target="#pagesCollapseError" 
+                            aria-expanded="false" aria-controls="pagesCollapseError">
+                            Error
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="pagesCollapseError" 
+                            aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="401.html">401 Page</a>
+                                <a class="nav-link" href="404.html">404 Page</a>
+                                <a class="nav-link" href="500.html">500 Page</a>
+                            </nav>
+                        </div>
+                    </nav>
+                </div>
+                <div class="sb-sidenav-menu-heading">LOGOUT</div>
+                <a class="nav-link collapsed" (click)="logout();" href="#"
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    Sair
+                </a>
+            </div>
+        </div>
+        <div class="sb-sidenav-footer">
+            <div class="small">Usuário Logado:</div>
+            {{ usuarioLogado }} {{ role }}
+        </div>
+    </nav>
+</div>

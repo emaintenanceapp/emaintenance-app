@@ -1,0 +1,194 @@
+<h4 class="mt-4">Cadastro de Equipamentos</h4>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Home / Cadastro de Equipamentos</li>
+</ol>
+<div class="container">
+    <form #equipamentoForm="ngForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Equipamento salvo/atualizado com sucesso!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngForIf="let erro of errors">
+                    {{ erro }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Número do Patrimônio:</label>
+                    <input type="text" class="form-control"
+                        [(ngModel)]="equipamento.numeroPatrimonio" name="numeroPatrimonio">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Número da Tag:</label>
+                    <input type="text" class="form-control"
+                        [(ngModel)]="equipamento.numeroTag" name="numeroTag">
+                </div>
+            </div>
+        </div>   
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" class="form-control"
+                        [(ngModel)]="equipamento.nome" name="nome">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Descricao:</label>
+                    <textarea class="form-control" rows="4" 
+                        [(ngModel)]="equipamento.descricao" name="descricao">Descrição do seu Equipamento</textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Localização:</label>
+                    <input type="text" class="form-control"
+                        [(ngModel)]="equipamento.localizacao" name="localizacao">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Fabricantes: </label>
+                    <select class="form-control" 
+                            [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="equipamento.idFabricante" >
+                        <option value="">Selecione</option>
+                        <option *ngFor="let fabricante of fabricantes" 
+                                [ngValue]="fabricante.id">
+                            {{ fabricante.nomeFantasia }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tipo de Equipamento: </label>
+                    <select class="form-control"
+                            [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="equipamento.idTipoEquipamento" >
+                        <option value="">Selecione</option>
+                        <option *ngFor="let tipoEquipamento of tiposEquipamentos" [ngValue]="tipoEquipamento.id">
+                            {{ tipoEquipamento.nome }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br/> 
+        <div class="row" *ngIf="equipamento.id">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="website">Data de Cadastro:</label>
+                    <input type="date" class="form-control" 
+                       [(ngModel)]="equipamento.dataCadastro" name="dataCadastro" disabled>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="website">Data de Atualização:</label>
+                    <input type="date" class="form-control" 
+                        [(ngModel)]="equipamento.dataAtualizacao" name="dataAtualizacao" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row"></div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="website">Operacional:</label>
+                    <div>
+                      <label>
+                        <input type="checkbox" value={{equipamento.operacional}} [checked]="equipamento.operacional === true ? true : false"
+                            [(ngModel)]="equipamento.operacional" name="operacional" />
+                        {{equipamento.operacional == true ? 'Ativo' : 'Inativo'}}
+                      </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="website">Defeito:</label>
+                    <div>
+                      <label>
+                        <input type="checkbox" value={{equipamento.defeito}} [checked]="equipamento.defeito === true ? true : false"
+                            [(ngModel)]="equipamento.defeito" name="defeito" />
+                        {{equipamento.defeito == true ? 'Ativo' : 'Inativo'}}
+                      </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5"></div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label for="website">Status:</label>
+                    <div>
+                      <label>
+                        <input type="checkbox" value={{equipamento.status}}  [checked]="equipamento.status === true ? true : false"
+                            [(ngModel)]="equipamento.status" name="status" />
+                        {{equipamento.status == true ? 'Ativo' : 'Inativo'}}
+                      </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success" >
+                    <i class="fa fa-save" ></i> Salvar
+                </button>
+
+                <button type="submit" class="btn btn-primary ml-1" >
+                    <i class="fa fa-sync-alt" ></i> Atualizar
+                </button>
+
+                <button type="button" class="btn btn-danger ml-1" >
+                    <i class="fa fa-arrow-alt-circle-left" ></i> Voltar
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <br />
+    <div class="row">
+        <h4 class="mt-4">Histórico do Equipamento</h4>
+        <br />
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Manutenção Ocorrida</th>
+                        <th>Descrição</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td>teste</td>
+                        <td>teste</td>
+                        <td>teste</td>
+                    </tr>
+                    <tr >
+                        <td>teste</td>
+                        <td>teste</td>
+                        <td>teste</td>
+                    </tr>
+                    <tr >
+                        <td>teste</td>
+                        <td>teste</td>
+                        <td>teste</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
