@@ -11,8 +11,6 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const AUTH_API = 'http://localhost:8080/api/auth/';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +18,7 @@ export class AuthService {
 
   private currentUserSubject: BehaviorSubject<Usuario>;
   public currentUser: Observable<Usuario>;
-  apiURL: string = environment.apiURLBase + "/api/auth/login"
+  apiURL: string = environment.apiURLBase + "/api/auth/"
   tokenURL: string = environment.apiURLBase + environment.obterTokenUrl
   clientID: string = environment.clientId;
   clientSecret: string = environment.clientSecret;
@@ -99,7 +97,7 @@ export class AuthService {
   }
 
   salvar(usuario: Usuario) : Observable<any> {
-    return this.http.post<any>(this.apiURL, usuario);
+    return this.http.post<any>(this.apiURL + 'login', usuario);
   }
 
   login( email: string, password: string ) : Observable<any> {
@@ -120,7 +118,7 @@ export class AuthService {
   }
 
   register(usuario): Observable<any> {
-    return this.http.post(AUTH_API + 'register', {
+    return this.http.post(this.apiURL + 'register', {
       name: usuario.name,
       email: usuario.email,
       role: usuario.role,
@@ -129,7 +127,7 @@ export class AuthService {
   }
 
   recovery(usuario): Observable<any> {
-    return this.http.post(AUTH_API + 'recovery', {
+    return this.http.post(this.apiURL + 'recovery', {
       name: usuario.name,
       email: usuario.email,
       password: usuario.password
