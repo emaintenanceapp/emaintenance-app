@@ -1,1 +1,1 @@
-web: ng serve
+web: ./bin/www npm start
