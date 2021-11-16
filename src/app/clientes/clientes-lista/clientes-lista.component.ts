@@ -23,7 +23,7 @@ export class ClientesListaComponent implements OnInit {
     private authService: AuthService
     ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
     this.service
       .getClienteByIdUsuario(this.authService.getIdUsuario())
       .subscribe( resposta => this.clientes = resposta );

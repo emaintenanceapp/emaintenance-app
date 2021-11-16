@@ -14,11 +14,12 @@ export class RegisterComponent implements OnInit {
   name: string;
   email: string;
   password: string;
-  confirmacaoSenha: boolean;
+  confirmacaoSenha: string;
   role: string;
   cadastrando: boolean;
   mensagemSucesso: string;
-  mensagemConfirmacao: string;
+  mensagemSenha: string;
+  flagConfirmaSenha: boolean = false;
   errors: String[];
 
   constructor(
@@ -45,15 +46,17 @@ export class RegisterComponent implements OnInit {
     usuario.password = this.password;
     usuario.role = ['user'];
 
-    this.confirmacaoSenha = this.checkPasswords(usuario);
-    if (this.confirmacaoSenha === false ) {
-      this.mensagemConfirmacao = "Cadastro realizado com sucesso! Efetue o login.";
-    }
-    this.authService
+    if (this.checkPasswords()) {
+      this.flagConfirmaSenha = true;
+      this.cadastrando = false;
+      this.mensagemSenha = "As senhas são divergentes. Por favor, escrever uma senha igual!";
+    }else{
+      this.flagConfirmaSenha = false;
+      this.authService
       .register(usuario)
       .subscribe( response => {
           this.mensagemSucesso = "Cadastro realizado com sucesso! Efetue o login.";
-          this.cadastrando = false;
+          this.cadastrando = true;
           this.name = '';
           this.password = '';
           this.role = '';
@@ -62,10 +65,11 @@ export class RegisterComponent implements OnInit {
           this.mensagemSucesso = null;
           this.errors = errorResponse.error.errors;
       })
+    }
   }
 
-  checkPasswords(usuario: Usuario) { // here we have the 'passwords' group
-    return usuario.password === usuario.confirmacaoSenha ? true : false ;
+  checkPasswords() { // here we have the 'passwords' group
+    return (this.password !== this.confirmacaoSenha);
   } 
   
 }

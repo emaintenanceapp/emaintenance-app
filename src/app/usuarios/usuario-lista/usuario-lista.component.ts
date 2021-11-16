@@ -16,12 +16,12 @@ export class UsuarioListaComponent implements OnInit {
   mensagemErro: string;
 
   constructor(
-    private service: UsuarioService, 
+    private usuarioService: UsuarioService, 
     private router: Router
     ) {}
 
   ngOnInit(): void {
-    this.service
+    this.usuarioService
       .getUsuarios()
       .subscribe( resposta => this.users = resposta);
   }
@@ -35,7 +35,7 @@ export class UsuarioListaComponent implements OnInit {
   }
 
   deletarUsuario(){
-    this.service
+    this.usuarioService
       .deletar(this.userSelecionado)
       .subscribe( 
         response => {

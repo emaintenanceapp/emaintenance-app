@@ -14,15 +14,16 @@ export class ClientesService {
   apiURL: string = environment.apiURLBase + '/api/clientes';
 
   constructor( 
-    private http: HttpClient
-    ) {}
+    private http: HttpClient, 
+    private authService: AuthService
+  ) {}
 
-  salvar( cliente: Cliente ) : Observable<Cliente> {
-    return this.http.post<Cliente>( `${this.apiURL}` , cliente);
+  salvar( cliente: Cliente ) : Observable<Cliente> { 
+    return this.http.post<Cliente>( `${this.apiURL}/${this.authService.getUserName()}` , cliente);
   }
 
   atualizar( cliente: Cliente ) : Observable<any> {
-    return this.http.put<Cliente>(`${this.apiURL}/${cliente.id}` , cliente);
+    return this.http.put<Cliente>(`${this.apiURL}/${this.authService.getUserName()}/${cliente.id}` , cliente);
   }
 
   getClientes() : Observable<Cliente[]> {
@@ -30,7 +31,7 @@ export class ClientesService {
   }
   
   getClienteById(id: number) : Observable<Cliente> {
-    return this.http.get<any>(`${this.apiURL}/${id}`);
+    return this.http.get<any>(`${this.apiURL}/cliente/${id}`);
   }
     
   getClienteByIdUsuario(idUsuario: number) : Observable<Cliente[]> {

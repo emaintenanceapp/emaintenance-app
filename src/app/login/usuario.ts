@@ -1,6 +1,7 @@
 export class Usuario {
     id: number;
     name: string;
+    nomeUser: string;
     password: string;
     confirmacaoSenha: string;
     role: Array<string>;

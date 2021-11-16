@@ -1,7 +1,74 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">eMaintenance</a>
-    <button class="btn btn-link btn-sm order-1 order-lg-0" 
-            id="sidebarToggle" href="#">
-        <i class="fas fa-bars"></i>
-    </button>            
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li>
+                <div class="flex-grow-1">
+                    <a aria-label="Home" class="logo" routerLink="/">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="reddit-icon-svg">
+                            <g>
+                                <circle fill="#FF4500" cx="10" cy="10" r="10"></circle>
+                                <path fill="#FFF"
+                                    d="M16.67,10A1.46,1.46,0,0,0,14.2,9a7.12,7.12,0,0,0-3.85-1.23L11,4.65,13.14,5.1a1,1,0,1,0,.13-0.61L10.82,4a0.31,0.31,0,0,0-.37.24L9.71,7.71a7.14,7.14,0,0,0-3.9,1.23A1.46,1.46,0,1,0,4.2,11.33a2.87,2.87,0,0,0,0,.44c0,2.24,2.61,4.06,5.83,4.06s5.83-1.82,5.83-4.06a2.87,2.87,0,0,0,0-.44A1.46,1.46,0,0,0,16.67,10Zm-10,1a1,1,0,1,1,1,1A1,1,0,0,1,6.67,11Zm5.81,2.75a3.84,3.84,0,0,1-2.47.77,3.84,3.84,0,0,1-2.47-.77,0.27,0.27,0,0,1,.38-0.38A3.27,3.27,0,0,0,10,14a3.28,3.28,0,0,0,2.09-.61A0.27,0.27,0,1,1,12.48,13.79Zm-0.18-1.71a1,1,0,1,1,1-1A1,1,0,0,1,12.29,12.08Z">
+                                </path>
+                            </g>
+                        </svg>
+                        <span class="reddit-text">
+                            E-Maintenance
+                        </span>
+                    </a>
+                </div> 
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="http://bootsnipp.com/snippets/featured/nav-account-manager" target="_blank">Mensagens</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">DropDown
+
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Link 2</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user"></span> 
+                    <strong>Perfil</strong>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="navbar-login">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="text-center">
+                                        <!--span class="glyphicon glyphicon-user icon-size"></span-->
+                                        <img [src]="'assets/img/klogo.png'" width="80" height="120" alt="image">
+                                    </p>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p class="text-left"><strong>{{ user.nomeUser }}</strong></p>
+                                    <p class="text-left small">{{ user.email }}</p>
+                                    <p class="text-left">
+                                        <a href="#" class="btn btn-primary btn-block btn-sm"
+                                            routerLink="/users/form/{{ user.id }}">Atualizar dados link</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="navbar-login navbar-login-session">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p>
+                                        <button (click)="logout()" class="btn btn-danger btn-block" ngbDropdownItem>Logout</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </nav>

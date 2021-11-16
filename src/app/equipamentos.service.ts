@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'
 import { Injectable } from '@angular/core';
 import { Equipamento } from './equipamentos/equipamento';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -12,8 +13,10 @@ export class EquipamentosService {
 
   apiURL: string = environment.apiURLBase + '/api/equipamentos';
 
-
-  constructor( private http: HttpClient ) {}
+  constructor( 
+    private http: HttpClient, 
+    private authService: AuthService
+  ) {}
 
   getEquipamento() : Equipamento {
     let equipamento : Equipamento = new Equipamento();
@@ -24,6 +27,14 @@ export class EquipamentosService {
     equipamento.status = true;
 
     return equipamento;
+  }
+  
+  salvar(equipamento: Equipamento) : Observable<Equipamento> { 
+    return this.http.post<Equipamento>( `${this.apiURL}/${this.authService.getUserName()}` , equipamento);
+  }
+
+  atualizar(equipamento: Equipamento) : Observable<any> {
+    return this.http.put<Equipamento>(`${this.apiURL}/${this.authService.getUserName()}/${equipamento.id}` , equipamento);
   }
 
   buscar(nome: string, mes?: number) : Observable<Equipamento[]>{
@@ -36,25 +47,20 @@ export class EquipamentosService {
     return this.http.get<any>(url);
   }
 
-  salvar( equipamento: Equipamento ) : Observable<Equipamento> {
-    return this.http.post<Equipamento>( `${this.apiURL}` , equipamento);
-  }
-
-  atualizar( equipamento: Equipamento ) : Observable<any> {
-    return this.http.put<Equipamento>(`${this.apiURL}/${equipamento.id}` , equipamento);
-  }
-
   getEquipamentos() : Observable<Equipamento[]> {
     return this.http.get<Equipamento[]>(this.apiURL);
   }
   
   getEquipamentoById(id: number) : Observable<Equipamento> {
-    return this.http.get<any>(`${this.apiURL}/${id}`);
+    return this.http.get<any>(`${this.apiURL}/equipamento/${id}`);
+  }
+      
+  getClienteByIdUsuario(idUsuario: number) : Observable<Equipamento[]> {
+    return this.http.get<any>(`${this.apiURL}/${idUsuario}`);
   }
 
   deletar(equipamento: Equipamento) : Observable<any> {
     return this.http.delete<any>(`${this.apiURL}/${equipamento.id}`);
   }
-
 
 }

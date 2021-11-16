@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'
+import { AuthService } from './auth.service';
 import { Criticidade } from './criticidades/criticidade';
 
 @Injectable({
@@ -11,8 +12,10 @@ export class CriticidadesService {
 
   apiURL: string = environment.apiURLBase + '/api/criticidades';
 
-
-  constructor( private http: HttpClient ) {}
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService
+    ) { }
 
   getCriticidade() : Criticidade {
     let criticidade : Criticidade = new Criticidade();

@@ -11,19 +11,19 @@ export class SidebarComponent implements OnInit {
 
   usuarioLogado: string;
   role: boolean;
-
+  
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.usuarioLogado = this.authService.getUsuarioAutenticado();
+    this.usuarioLogado = this.authService.getUserName();
     this.role = this.authService.isAdmin();   
   }
 
   logout(){
-    this.authService.encerrarSessao();
+    this.authService.logout();
     this.router.navigate(['/login'])
   }
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'
+import { AuthService } from './auth.service';
 import { Fabricante } from './fabricantes/fabricantes-form/fabricante';
 
 @Injectable({
@@ -9,11 +10,12 @@ import { Fabricante } from './fabricantes/fabricantes-form/fabricante';
 })
 export class FabricantesService {
 
-
   apiURL: string = environment.apiURLBase + '/api/fabricantes';
 
-
-  constructor( private http: HttpClient ) {}
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService
+    ) { }
 
   getFabricante() : Fabricante {
     let fabricante : Fabricante = new Fabricante();

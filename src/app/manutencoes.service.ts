@@ -3,17 +3,19 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment'
 import { HttpClient } from '@angular/common/http';
 import { Manutencao } from './manutencoes/manutencoes-form/manutencao';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManutencoesService {
 
-
   apiURL: string = environment.apiURLBase + '/api/manutencoes';
 
-
-  constructor( private http: HttpClient ) {}
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService
+    ) { }
 
   getManutencao() : Manutencao {
     let manutencao : Manutencao = new Manutencao();
@@ -42,7 +44,11 @@ export class ManutencoesService {
   }
   
   getManutencaoById(id: number) : Observable<Manutencao> {
-    return this.http.get<any>(`${this.apiURL}/${id}`);
+    return this.http.get<any>(`${this.apiURL}/manutencao/${id}`);
+  }
+  
+  getManutencaoByIdUsuario(idUsuario: number) : Observable<Manutencao> {
+    return this.http.get<any>(`${this.apiURL}/${idUsuario}`);
   }
 
   deletar(manutencao: Manutencao) : Observable<any> {

@@ -38,7 +38,7 @@ export class ServicoPrestadoFormComponent implements OnInit {
             .subscribe( 
               response => this.servico = {
                 ...response,
-                idCliente:response.cliente.id
+                idCliente:response.idCliente
               },
               errorResponse => this.servico = new ServicoPrestado()
             )

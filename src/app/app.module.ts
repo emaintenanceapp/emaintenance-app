@@ -38,6 +38,7 @@ import { RecoveryComponent } from './account/recovery/recovery.component';
 import { RegisterComponent } from './account/register/register.component';
 import { CanaldiretoModule } from './canaldireto/canaldireto.module';
 import { CanaldiretoService } from './canaldireto.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -67,7 +68,8 @@ import { CanaldiretoService } from './canaldireto.service';
     TiposManutencoesModule,
     HistoricoEquipamentosModule,
     HistoricoManutencoesModule,
-    CanaldiretoModule
+    CanaldiretoModule,
+    NgbModule
   ],
   providers: [
     ClientesService,

@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
+
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -6,6 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt'
 
 import { environment } from '../environments/environment'
 import { Usuario } from './login/usuario';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,6 +17,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+
+  @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
+  @Output() username: EventEmitter<string> = new EventEmitter();
 
   private currentUserSubject: BehaviorSubject<Usuario>;
   public currentUser: Observable<Usuario>;
@@ -26,7 +31,8 @@ export class AuthService {
   private role: string;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   obterToken(){
@@ -39,11 +45,16 @@ export class AuthService {
     return null;
   }
 
-  encerrarSessao(){
-    localStorage.removeItem('access_token')
+  logout(){
+    this.router.navigate(['/login'])
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('authenticationToken');
+    localStorage.removeItem('email');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('token');
   }
 
-  getUsuarioAutenticado(){
+  getUserName(){
     const token = this.obterToken();
     this.getUsuarioRoles();
     if(token){
@@ -53,6 +64,16 @@ export class AuthService {
     return null;
   }
   
+  getName(){
+    const token = this.obterToken();
+    this.getUsuarioRoles();
+    if(token){
+      const usuario = this.jwtHelper.decodeToken(token).sub;
+      return usuario;
+    }
+    return null;
+  }
+
   getIdUsuario(){
     const token = this.obterToken();
     this.getUsuarioRoles();
@@ -113,7 +134,9 @@ export class AuthService {
                                           }, { headers });
   }
 
-  public get currentUserValue(): Usuario {
+  currentUserValue(): Usuario {
+    console.log('currentUser: ' +this.currentUser);
+    
     return this.currentUserSubject.value;
   }
 

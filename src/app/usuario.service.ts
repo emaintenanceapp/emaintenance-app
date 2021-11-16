@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment'
 import { Observable } from 'rxjs';
 import { Usuario } from './login/usuario';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,10 @@ export class UsuarioService {
 
   apiURL: string = environment.apiURLBase + '/api/users';
 
-  constructor( private http: HttpClient ) {}
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService
+    ) { }
 
   getUsuario() : Usuario {
     let usuario : Usuario = new Usuario();
@@ -51,5 +55,13 @@ export class UsuarioService {
 
   deletar(usuario: Usuario) : Observable<any> {
     return this.http.delete<any>(`${this.apiURL}/${usuario.id}`);
+  }
+
+  getUsuarioLogado() : Observable<Usuario> {
+    return this.http.get<Usuario>( `${this.apiURL}/me/${this.authService.getUserName()}`);
+  }
+
+  currentUserValue(): Usuario {
+    return this.authService.currentUserValue();
   }
 }
