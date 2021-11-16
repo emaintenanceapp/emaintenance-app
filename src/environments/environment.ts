@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURLBase: 'https://emaintenanceappapplication.herokuapp.com/',
+  apiURLBase: 'https://emaintenanceapplication.herokuapp.com',
   clientId: 'emaintenance',
   clientSecret: 'emaintenance',
   obterTokenUrl: '/api/auth/login'
