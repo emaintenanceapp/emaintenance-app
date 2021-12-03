@@ -18,6 +18,9 @@ export class ServicoPrestadoFormComponent implements OnInit {
   success: boolean = false;
   errors: String[];
   id: number;
+  todos: Cliente[] = [];
+  totalElements: number = 0;
+  loading: boolean;
 
   constructor(
     private clienteService: ClientesService,
@@ -44,9 +47,20 @@ export class ServicoPrestadoFormComponent implements OnInit {
             )
         }
     })
+
+  }
+
+  private getTodos() {
+    this.loading = true;
     this.clienteService
       .getClientes()
-      .subscribe( response => this.clientes = response );
+      .subscribe(data => {
+        this.todos = data['content'];
+        this.totalElements = data['totalElements'];
+        this.loading = false;
+      }, error => {
+        this.loading = false;
+      });
   }
   
   voltarParaListagem(){

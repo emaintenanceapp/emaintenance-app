@@ -18,16 +18,9 @@
         <div class="row" *ngIf="cliente.id">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>ID:</label>
-                    <input type="text" [ngModel]="cliente.id" name="id" class="form-control" disabled="true" />
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
                     <label>Data Cadastro:</label>
                     <input type="text" class="form-control" name="dataCadastro"
-                           [ngModel]="cliente.dataCadastro" disabled="true"  />
+                           [ngModel]="cliente.dataCadastro" disabled="true" mask="00/00/0000"/>
                 </div>
             </div>
         </div>
@@ -44,7 +37,10 @@
                 <div class="form-group">
                     <label>CPF: *</label>
                     <input type="text" class="form-control" 
-                            [(ngModel)]="cliente.cpf" name="cpf"  />
+                            [(ngModel)]="cliente.cpf" name="cpf" 
+                            matInput
+                            placeholder="CPF"
+                            mask="000.000.000-00"> 
                 </div>
             </div>
         </div>

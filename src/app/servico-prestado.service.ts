@@ -40,7 +40,7 @@ export class ServicoPrestadoService {
       .set("nome", nome)
       .set("mes", mes ?  mes.toString() : '');
 
-    const url = this.apiURL + "/pesquisarDTO" + "?" + httpParams.toString();
+    const url = this.apiURL + "/pesquisar" + "?" + httpParams.toString();
     return this.http.get<any>(url);
   }
 

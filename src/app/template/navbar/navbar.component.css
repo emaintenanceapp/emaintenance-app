@@ -96,6 +96,13 @@ header{
     max-width: 24px;
 }
 
+.navbar{
+    position: relative !important;
+    min-height: 50px !important;
+    margin-bottom: 0px !important;
+    border: 1px solid transparent !important;
+}
+
 .navbar-login
 {
     width: 305px;

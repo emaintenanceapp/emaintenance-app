@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,8 +40,8 @@ import { RegisterComponent } from './account/register/register.component';
 import { CanaldiretoModule } from './canaldireto/canaldireto.module';
 import { CanaldiretoService } from './canaldireto.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     FormsModule,
+    CommonModule,
+    NgxPaginationModule,
     HttpClientModule,
     AppRoutingModule,
     TemplateModule,
@@ -69,7 +72,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HistoricoEquipamentosModule,
     HistoricoManutencoesModule,
     CanaldiretoModule,
-    NgbModule
+    NgbModule,
+    NgxMaskModule.forRoot({
+      validation: true,
+    })
   ],
   providers: [
     ClientesService,

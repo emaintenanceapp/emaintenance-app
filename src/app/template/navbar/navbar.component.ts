@@ -31,10 +31,6 @@ export class NavbarComponent implements OnInit {
     this.usuarioService
     .getUsuarioLogado()
     .subscribe( resposta => this.user = resposta);
-
-    console.log('user: '+this.user);
-    
-
     this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
     this.authService.username.subscribe((data: string) => this.username = data);
     this.isLoggedIn = this.authService.isAuthenticated();

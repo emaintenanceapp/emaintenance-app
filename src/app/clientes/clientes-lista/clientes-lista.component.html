@@ -22,61 +22,100 @@
                 <i class="fa fa-plus"></i> Novo
             </button>
         </div>
+        <div class="col-md-8">
+            <div class="input-group mb-2">
+                <input type="text"
+                    class="form-control"
+                    placeholder="Nome"
+                    [(ngModel)]="nome" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary"
+                        type="button"
+                        (click)="retrieveClientes()">
+                        Pesquisar
+                        </button>
+                    </div>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            Itens por página:
+            <select (change)="handlePageSizeChange($event)">
+              <option *ngFor="let size of pageSizes" [ngValue]="size">
+                {{ size }}
+              </option>
+            </select>
+          </div>
     </div>
+    
     <br />
     <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Data Cadastro</th>
+                    <th scope="col">Data Atualização</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cliente of clientes | paginate : {
+                                itemsPerPage: pageSize,
+                                currentPage: page,
+                                totalItems: count
+                            };
+                        let i = index"
+                    [class.active]="i == currentIndex"
+                    (click)="setActiveCliente(cliente, i)" >
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.cpf | mask: "000.000.000-00" }}</td>
+                    <td>{{ cliente.dataCadastro | mask: "00/00/0000"}}</td>
+                    <td>{{ cliente.dataAtualizacao }}</td>
+                    <td>
+                        <button class="btn btn-primary" 
+                                routerLink="/clientes/form/{{ cliente.id }}">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger" (click)="preparaDelecao(cliente)" 
+                                data-toggle="modal" data-target="#modalDelecao">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <div class="col-md-12">
-            <table class="table table-condensed table-hover">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
-                        <th>Data Cadastro</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let cliente of clientes">
-                        <td>{{ cliente.id }}</td>
-                        <td>{{ cliente.nome }}</td>
-                        <td>{{ cliente.cpf }}</td>
-                        <td>{{ cliente.dataCadastro }}</td>
-                        <td>
-                            <button class="btn btn-primary" 
-                                    routerLink="/clientes/form/{{ cliente.id }}">
-                                <i class="fa fa-edit"></i>
-                            </button>
-
-                            <button class="btn btn-danger" (click)="preparaDelecao(cliente)" 
-                                    data-toggle="modal" data-target="#modalDelecao">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <pagination-controls
+                previousLabel="Anterior"
+                nextLabel="Próximo"
+                responsive="true"
+                (pageChange)="handlePageChange($event)" >
+            </pagination-controls>
         </div>
-    </div>
-
-    <div id="modalDelecao" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Confirmação</h4>
-                </div>
-
-                <div class="modal-body" *ngIf="clienteSelecionado">
-                    Confirma a deleção do(a) Cliente {{ clienteSelecionado.nome }}?
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-success" (click)="deletarCliente()"  
-                            data-dismiss="modal">Confirmar</button>
-                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <div id="modalDelecao" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Confirmação</h4>
+                    </div>
+    
+                    <div class="modal-body" *ngIf="clienteSelecionado">
+                        Confirma a deleção do(a) Cliente {{ clienteSelecionado.nome }}?
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button class="btn btn-success" (click)="deletarCliente()"  
+                                data-dismiss="modal">Confirmar</button>
+                        <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    
 </div>
 

@@ -79,8 +79,6 @@ export class AuthService {
     this.getUsuarioRoles();
     if(token){
       const idUsuario = this.jwtHelper.decodeToken(token).jti;
-      console.log('idUsuario: '+idUsuario);
-      
       return idUsuario;
     }
     return null;
@@ -135,8 +133,6 @@ export class AuthService {
   }
 
   currentUserValue(): Usuario {
-    console.log('currentUser: ' +this.currentUser);
-    
     return this.currentUserSubject.value;
   }
 
