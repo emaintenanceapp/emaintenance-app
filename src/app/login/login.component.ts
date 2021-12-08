@@ -28,16 +28,20 @@ export class LoginComponent  {
   onSubmit(){
     this.authService
       .login(this.email, this.password)
-      .pipe(first())
       .subscribe(response => {
+        this.mensagemSucesso = "Login realizado com sucesso!";
         const access_token = JSON.stringify(response);   
         localStorage.setItem('access_token', access_token);  
+        this.errors = []
         this.router.navigate(['/home'])
           .then(() => {
             window.location.reload();
           });
       }, errorResponse => {
-        this.errors = ['Usuário e/ou senha incorreto(s).']
+        console.log(errorResponse);
+        
+        this.mensagemSucesso = null;
+        this.errors = errorResponse.error.errors;
       })
   }
 

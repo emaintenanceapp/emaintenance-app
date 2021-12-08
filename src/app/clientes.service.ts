@@ -23,8 +23,8 @@ export class ClientesService {
     return this.http.post<Cliente>( `${this.apiURL}/${this.authService.getUserName()}` , cliente);
   }
 
-  atualizar( cliente: Cliente ) : Observable<any> {
-    return this.http.put<Cliente>(`${this.apiURL}/${this.authService.getUserName()}/${cliente.id}` , cliente);
+  atualizar( cliente: Cliente ) : Observable<Cliente> {
+    return this.http.put<Cliente>(`${this.apiURL}/cliente/${this.authService.getUserName()}` , cliente);
   }
 
   getClientes()  : Observable<any>{
@@ -40,7 +40,7 @@ export class ClientesService {
   }
 
   deletar(cliente: Cliente) : Observable<any> {
-    return this.http.delete<any>(`${this.apiURL}/${cliente.id}`);
+    return this.http.delete<any>(`${this.apiURL}/cliente/${this.authService.getUserName()}/${cliente.id}`);
   }
 
   getAll(params): Observable<any> {

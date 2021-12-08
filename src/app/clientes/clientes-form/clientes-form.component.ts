@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router'
 import { Cliente } from '../cliente'
 import { ClientesService } from '../../clientes.service'
 import { Observable } from 'rxjs';
+import { NotificationService } from 'src/app/notification.service';
 
 @Component({
   selector: 'app-clientes-form',
@@ -20,10 +21,32 @@ export class ClientesFormComponent implements OnInit {
   constructor( 
       private service: ClientesService ,
       private router: Router,
-      private activatedRoute : ActivatedRoute
+      private activatedRoute : ActivatedRoute,
+      private notifyService : NotificationService
     ) {
     this.cliente = new Cliente();
   }
+  
+  showToasterSuccess(){
+      this.notifyService.showSuccess("Data shown successfully !!", "ItSolutionStuff.com")
+  }
+  
+  showToasterError(){
+      this.notifyService.showError("Something is wrong", "ItSolutionStuff.com")
+  }
+  
+  showToasterInfo(){
+      this.notifyService.showInfo("This is info", "ItSolutionStuff.com")
+  }
+  
+  showToasterWarning(){
+      this.notifyService.showWarning("This is warning", "ItSolutionStuff.com")
+  }
+
+  showHtmlToaster(){
+    this.notifyService.showHTMLMessage("<h1>Data shown successfully !!</h1>", "Notification")
+  }
+
 
   ngOnInit(): void {
     let params : Observable<Params> = this.activatedRoute.params
@@ -49,22 +72,21 @@ export class ClientesFormComponent implements OnInit {
       this.service
         .atualizar(this.cliente)
         .subscribe(response => {
-            this.success = true;
             this.errors = null;
+            this.notifyService.showSuccess("Cliente atualizado com sucesso!!", "eMaintenance")
         }, errorResponse => {
-          this.errors = ['Erro ao atualizar o cliente.']
+          this.notifyService.showError("Erro ao salvar cliente", "eMaintenance")
         })
     }else{
       this.service
       .salvar(this.cliente)
       .subscribe( 
         response => {
-        this.success = true;
+        this.notifyService.showSuccess("Cliente salvo com sucesso!!", "eMaintenance")
         this.errors = null;
         this.cliente = response;
       } , errorResponse => {
-        this.success = false;
-        this.errors = errorResponse.error.errors;
+        this.notifyService.showError("Erro ao salvar cliente", "eMaintenance")
       })
     }
   }

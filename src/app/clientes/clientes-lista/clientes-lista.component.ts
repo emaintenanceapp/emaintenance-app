@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { Cliente } from '../cliente';
 import { ClientesService } from '../../clientes.service'
 import { AuthService } from 'src/app/auth.service';
+import { NotificationService } from 'src/app/notification.service';
 
 @Component({
   selector: 'app-clientes-lista',
@@ -38,7 +39,8 @@ export class ClientesListaComponent implements OnInit {
   constructor(
     private service: ClientesService, 
     private router: Router, 
-    private authService: AuthService
+    private authService: AuthService,
+    private notifyService : NotificationService
     ) { }
   
   pageChanged(event){
@@ -69,10 +71,7 @@ export class ClientesListaComponent implements OnInit {
   }
 
   retrieveClientes() {
-    
     const params = this.getRequestParams(this.nome, this.page, this.pageSize);
-    console.log("Nome: "+params);
-
     this.service.getAll(params)
       .subscribe(
         response => {
@@ -128,11 +127,11 @@ export class ClientesListaComponent implements OnInit {
       .deletar(this.clienteSelecionado)
       .subscribe( 
         response => {
-          this.mensagemSucesso = 'Cliente deletado com sucesso!'
+          this.notifyService.showSuccess("Cliente deletado com sucesso!!", "eMaintenance")
           this.ngOnInit();
         },
-        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o cliente.'  
-      )
+        erro => this.notifyService.showError("Ocorreu um erro ao deletar o cliente", "eMaintenance")
+        )
   }
 
 }

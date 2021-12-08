@@ -6,9 +6,6 @@
     <form #clienteForm="ngForm" (ngSubmit)="onSubmit()" >
         <div class="row">
             <div class="col-md-12">
-                <div class="alert alert-success" role="alert" *ngIf="success == true">
-                    Cliente salvo/atualizado com sucesso!    
-                </div>
                 <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
                     {{ erro  }}    
                 </div>
@@ -58,8 +55,28 @@
                 <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
                     <i class="fa fa-arrow-alt-circle-left" ></i> Voltar
                 </button>
+
+                <br />
+<!-- button (click)="showToasterSuccess()">
+    Success Toaster
+</button>
+  
+<button (click)="showToasterError()">
+    Error Toaster
+</button>
+  
+<button (click)="showToasterInfo()">
+    Info Toaster
+</button>
+  
+<button (click)="showToasterWarning()">
+    Warning Toaster
+</button>
+
+<button (click)="showHtmlToaster()">
+    HTML Toaster
+</button -->
             </div>
-     
         </div>
     </form>
 </div>
