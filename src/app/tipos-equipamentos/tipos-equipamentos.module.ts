@@ -5,6 +5,9 @@ import { TiposEquipamentosRoutingModule } from './tipos-equipamentos-routing.mod
 import { TiposEquipamentosFormComponent } from './tipos-equipamentos-form/tipos-equipamentos-form.component';
 import { TiposEquipamentosListaComponent } from './tipos-equipamentos-lista/tipos-equipamentos-lista.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -15,7 +18,12 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     TiposEquipamentosRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    NgxPaginationModule,
+    NgxMaskModule.forRoot({
+      validation: true,
+    })
   ],
   exports: [
     TiposEquipamentosFormComponent,

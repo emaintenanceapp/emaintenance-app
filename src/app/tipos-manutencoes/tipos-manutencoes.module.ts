@@ -5,6 +5,9 @@ import { TiposManutencoesRoutingModule } from './tipos-manutencoes-routing.modul
 import { TiposManutencoesFormComponent } from './tipos-manutencoes-form/tipos-manutencoes-form.component';
 import { TiposManutencoesListaComponent } from './tipos-manutencoes-lista/tipos-manutencoes-lista.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -15,7 +18,12 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     TiposManutencoesRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    NgxPaginationModule,
+    NgxMaskModule.forRoot({
+      validation: true,
+    })
   ],
   exports: [
     TiposManutencoesFormComponent,

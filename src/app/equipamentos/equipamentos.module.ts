@@ -5,6 +5,9 @@ import {FormsModule} from '@angular/forms';
 import { EquipamentosRoutingModule } from './equipamentos-routing.module';
 import { EquipamentosFormComponent } from './equipamentos-form/equipamentos-form.component';
 import { EquipamentosListaComponent } from './equipamentos-lista/equipamentos-lista.component';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -15,7 +18,12 @@ import { EquipamentosListaComponent } from './equipamentos-lista/equipamentos-li
   imports: [
     CommonModule,
     EquipamentosRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    NgxPaginationModule,
+    NgxMaskModule.forRoot({
+      validation: true,
+    })
   ],
   exports: [
     EquipamentosFormComponent,

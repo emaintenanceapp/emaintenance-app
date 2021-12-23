@@ -5,6 +5,9 @@ import { HistoricoManutencoesRoutingModule } from './historico-manutencoes-routi
 import { HistoricoManutencoesFormComponent } from './historico-manutencoes-form/historico-manutencoes-form.component';
 import { HistoricoManutencoesListaComponent } from './historico-manutencoes-lista/historico-manutencoes-lista.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -15,7 +18,12 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HistoricoManutencoesRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    NgxPaginationModule,
+    NgxMaskModule.forRoot({
+      validation: true,
+    })
   ],
   exports: [
     HistoricoManutencoesFormComponent,

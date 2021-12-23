@@ -18,12 +18,12 @@ export class ServicoPrestadoService {
     private authService: AuthService
     ) { }
   
-  salvar(servicoPrestado: ServicoPrestado) : Observable<ServicoPrestado> { 
-    return this.http.post<ServicoPrestado>( `${this.apiURL}/${this.authService.getUserName()}` , servicoPrestado);
+  salvar( servicoPrestado: ServicoPrestado)  : Observable<ServicoPrestado> { 
+     return this.http.post<ServicoPrestado>( `${this.apiURL}/${this.authService.getUserName()}` , servicoPrestado);
   }
 
-  atualizar(servicoPrestado: ServicoPrestado) : Observable<any> {
-    return this.http.put<ServicoPrestado>(`${this.apiURL}/${this.authService.getUserName()}/${servicoPrestado.id}` , servicoPrestado);
+  atualizar( servicoPrestado: any ) : Observable<any> {
+    return this.http.put<ServicoPrestado>(`${this.apiURL}/${this.authService.getUserName()}/${servicoPrestado.id}` ,  {servicoPrestado});
   }
 
   buscar(nome: string, mes: number) : Observable<ServicoPrestadoBusca[]>{
@@ -48,16 +48,41 @@ export class ServicoPrestadoService {
     return this.http.get<any[]>(this.apiURL);
   }
   
-  getServicoPrestadosById(id: number) : Observable<ServicoPrestado> {
-    return this.http.get<any>(`${this.apiURL}/servico-prestado/${id}`);
+  getAll(params): Observable<any> {
+    return this.http.get(`${this.apiURL}/lista-servicos-prestados/${this.authService.getUserName()}`, { params });
   }
-
-  getServicosPrestadosByIdUsuario(idUsuario: number) : Observable<ServicoPrestado[]> {
-    return this.http.get<any>(`${this.apiURL}/${idUsuario}`);
+  
+  getServicoPrestadosById(id: number) : Observable<ServicoPrestado> {
+    return this.http.get<any>(`${this.apiURL}/servico-prestado/${this.authService.getUserName()}/${id}`);
+  }
+ 
+  getServicosPrestadosByUser(idUsuario: number) : Observable<ServicoPrestado[]> {
+    return this.http.get<any>(`${this.apiURL}/${this.authService.getUserName()}/`);
   }
 
   deletar(servicoPrestado: ServicoPrestado) : Observable<any> {
-    return this.http.delete<any>(`${this.apiURL}/${servicoPrestado.id}`);
+    return this.http.delete<any>(`${this.apiURL}/${this.authService.getUserName()}/${servicoPrestado.id}`);
+  }
+
+  
+  get(id) {
+    return this.http.get(`${this.apiURL}/${id}`);
+  }
+
+  create(data) {
+    return this.http.post(this.apiURL, data);
+  }
+
+  update(id, data) {
+    return this.http.put(`${this.apiURL}/${id}`, data);
+  }
+
+  delete(id) {
+    return this.http.delete(`${this.apiURL}/${id}`);
+  }
+
+  deleteAll() {
+    return this.http.delete(this.apiURL);
   }
 
 }

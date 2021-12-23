@@ -5,6 +5,9 @@ import { CriticidadesRoutingModule } from './criticidades-routing.module';
 import { CriticidadesListaComponent } from './criticidades-lista/criticidades-lista.component';
 import { CriticidadesFormComponent } from './criticidades-form/criticidades-form.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -15,7 +18,12 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     CriticidadesRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    NgxPaginationModule,
+    NgxMaskModule.forRoot({
+      validation: true,
+    })
   ],
   exports: [
     CriticidadesListaComponent,

@@ -2,50 +2,57 @@
 <ol class="breadcrumb mb-4">
     <li class="breadcrum-bitem active">Consulta</li>
 </ol>
-<div class="container">
-    <form #consultaForm="ngForm" (submit)="consultar()">
-        <div class="row">
-            <div class="col-md-6">
-                <label for="inputNome">Nome Cliente:</label>
-                <input type="text" [(ngModel)]="nome" 
-                       name="nome" class="form-control"
-                       id="inputNome">
-            </div>
-
-            <div class="col-md-6">
-                <label for="inputMes">Mês:</label>
-                <select [(ngModel)]="mes" class="form-control" name="mes">
-                    <option value="">Selecione...</option>
-                    <option *ngFor="let mes of meses" [value]="mes">
-                        {{ mes }}
-                    </option>
-                </select>
+    <div class="row">
+        <div class="col-md-1">
+            <button class="btn btn-warning" (click)="novoCadastro()" >
+                <i class="fa fa-plus"></i> Novo
+            </button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-1">
+            <label>Mês:</label>
+            <select [(ngModel)]="mes" class="form-control" name="mes" placeholder="Mês">
+                <option value="">Selecione...</option>
+                <option *ngFor="let mes of meses" [value]="mes">
+                    {{ mes }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-8">
+            <label>Nome Cliente:</label>
+            <div class="input-group mb-2">
+                <input type="text"
+                    class="form-control"
+                    placeholder="Nome"
+                    [(ngModel)]="nome" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary"
+                        type="button"
+                        (click)="retrieveServicosPrestados()">
+                        Pesquisar
+                        </button>
+                    </div>
             </div>
         </div>
 
-        <br />
-
-        <div class="row">
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-search"></i> Consultar
-                </button>
-
-                <button type="button" 
-                        routerLink="/servicos-prestados/form"
-                        class="btn btn-warning ml-1">
-                    <i class="fa fa-plus"></i> Novo
-                </button>
-            </div>
-        </div>
-    </form>
+        <div class="col-md-2">
+            <label>Itens por página:</label>
+            <select (change)="handlePageSizeChange($event)" class="form-control">
+              <option *ngFor="let size of pageSizes" [ngValue]="size">
+                {{ size }}
+              </option>
+            </select>
+          </div>
+    </div>
 
     <br />
     <div class="row">
         <div class="alert alert-warning" role="alert" *ngIf="message">
             {{ message }}   
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12"> 
             <table class="table">
                 <thead>
                     <tr>
@@ -57,20 +64,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let servicosprestado of lista" >
-                        <td>{{ servicosprestado.nomeCliente }} </td>
-                        <td>{{ servicosprestado.descricao }} </td>
-                        <td>{{ servicosprestado.preco }} </td>
-                        <td>{{ servicosprestado.data }} </td>
+                    <tr *ngFor="let servicoprestado of servicosPrestados | paginate : {
+                                    itemsPerPage: pageSize,
+                                    currentPage: page,
+                                    totalItems: count
+                                };
+                            let i = index"
+                        [class.active]="i == currentIndex"
+                        (click)="setActiveServicoPrestado(servicoprestado, i)" >
+                        <td>{{ servicoprestado.cliente.nome }}</td>
+                        <td>{{ servicoprestado.descricao }} </td>
+                        <td>{{ servicoprestado.preco }} </td>
+                        <td>{{ servicoprestado.data | mask: "00/00/0000" }} </td>
                         <button class="btn btn-primary" 
-                                routerLink="/servicos-prestados/form/{{ servicosprestado.id }}">
+                                routerLink="/servicos-prestados/form/{{ servicoprestado.id }}">
                             <i class="fa fa-edit"></i>
                         </button>
 
-                        <button class="btn btn-danger" (click)="preparaDelecao(servicosprestado)" 
+                        <button class="btn btn-danger" (click)="preparaDelecao(servicoprestado)" 
                                 data-toggle="modal" data-target="#modalDelecao">
                             <i class="fa fa-trash"></i>
                         </button>
+
+                        
                     </tr>
                 </tbody>
             </table>
@@ -96,4 +112,3 @@
             </div>
         </div>
     </div>
-</div>

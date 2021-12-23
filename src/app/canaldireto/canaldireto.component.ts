@@ -12,4 +12,8 @@ export class CanalDiretoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(){
+    console.log('submit');
+  }
+
 }

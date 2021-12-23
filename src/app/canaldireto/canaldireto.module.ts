@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { CanaldiretoRoutingModule } from './canaldireto-routing.module';
 import { CanalDiretoComponent } from './canaldireto.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { CanalDiretoComponent } from './canaldireto.component';
   ],
   imports: [
     CommonModule,
-    CanaldiretoRoutingModule
+    CanaldiretoRoutingModule,
+    FormsModule,
+    RouterModule
   ],
   exports: [
     CanalDiretoComponent

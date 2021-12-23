@@ -2,81 +2,79 @@
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">{{ cliente.id ? 'Edição' : 'Cadastro' }}</li>
 </ol>
-<div class="container">
-    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()" >
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
-                    {{ erro  }}    
-                </div>
+<form #clienteForm="ngForm" (ngSubmit)="onSubmit()" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                {{ erro  }}    
             </div>
         </div>
+    </div>
 
-        <div class="row" *ngIf="cliente.id">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Data Cadastro:</label>
-                    <input type="text" class="form-control" name="dataCadastro"
-                           [ngModel]="cliente.dataCadastro" disabled="true" mask="00/00/0000"/>
-                </div>
+    <div class="row" *ngIf="cliente.id">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Data Cadastro:</label>
+                <input type="text" class="form-control" name="dataCadastro"
+                        [ngModel]="cliente.dataCadastro" disabled="true" mask="00/00/0000"/>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Nome: *</label>
-                    <input type="text" class="form-control" 
-                           [(ngModel)]="cliente.nome" name="nome"   />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>CPF: *</label>
-                    <input type="text" class="form-control" 
-                            [(ngModel)]="cliente.cpf" name="cpf" 
-                            matInput
-                            placeholder="CPF"
-                            mask="000.000.000-00"> 
-                </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Nome: *</label>
+                <input type="text" class="form-control" 
+                        [(ngModel)]="cliente.nome" name="nome"   />
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>CPF: *</label>
+                <input type="text" class="form-control" 
+                        [(ngModel)]="cliente.cpf" name="cpf" 
+                        matInput
+                        placeholder="CPF"
+                        mask="000.000.000-00"> 
+            </div>
+        </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-3">
-                <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
-                    <i class="fa fa-save" ></i> Salvar
-                </button>
+    <div class="row">
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
+                <i class="fa fa-save" ></i> Salvar
+            </button>
 
-                <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
-                    <i class="fa fa-sync-alt" ></i> Atualizar
-                </button>
+            <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
+                <i class="fa fa-sync-alt" ></i> Atualizar
+            </button>
 
-                <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
-                    <i class="fa fa-arrow-alt-circle-left" ></i> Voltar
-                </button>
+            <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+                <i class="fa fa-arrow-alt-circle-left" ></i> Voltar
+            </button>
 
-                <br />
+            <br />
 <!-- button (click)="showToasterSuccess()">
-    Success Toaster
+Success Toaster
 </button>
-  
+
 <button (click)="showToasterError()">
-    Error Toaster
+Error Toaster
 </button>
-  
+
 <button (click)="showToasterInfo()">
-    Info Toaster
+Info Toaster
 </button>
-  
+
 <button (click)="showToasterWarning()">
-    Warning Toaster
+Warning Toaster
 </button>
 
 <button (click)="showHtmlToaster()">
-    HTML Toaster
+HTML Toaster
 </button -->
-            </div>
         </div>
-    </form>
-</div>
+    </div>
+</form>

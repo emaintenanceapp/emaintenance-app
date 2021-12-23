@@ -26,27 +26,6 @@ export class ClientesFormComponent implements OnInit {
     ) {
     this.cliente = new Cliente();
   }
-  
-  showToasterSuccess(){
-      this.notifyService.showSuccess("Data shown successfully !!", "ItSolutionStuff.com")
-  }
-  
-  showToasterError(){
-      this.notifyService.showError("Something is wrong", "ItSolutionStuff.com")
-  }
-  
-  showToasterInfo(){
-      this.notifyService.showInfo("This is info", "ItSolutionStuff.com")
-  }
-  
-  showToasterWarning(){
-      this.notifyService.showWarning("This is warning", "ItSolutionStuff.com")
-  }
-
-  showHtmlToaster(){
-    this.notifyService.showHTMLMessage("<h1>Data shown successfully !!</h1>", "Notification")
-  }
-
 
   ngOnInit(): void {
     let params : Observable<Params> = this.activatedRoute.params
@@ -63,10 +42,6 @@ export class ClientesFormComponent implements OnInit {
     })
   }
 
-  voltarParaListagem(){
-    this.router.navigate(['/clientes/lista'])
-  }
-
   onSubmit(){
     if(this.id){
       this.service
@@ -75,7 +50,7 @@ export class ClientesFormComponent implements OnInit {
             this.errors = null;
             this.notifyService.showSuccess("Cliente atualizado com sucesso!!", "eMaintenance")
         }, errorResponse => {
-          this.notifyService.showError("Erro ao salvar cliente", "eMaintenance")
+          this.notifyService.showError("Erro ao atualizar cliente", "eMaintenance")
         })
     }else{
       this.service
@@ -90,4 +65,29 @@ export class ClientesFormComponent implements OnInit {
       })
     }
   }
+
+  voltarParaListagem(){
+    this.router.navigate(['/clientes/lista'])
+  }
+
+  showToasterSuccess(){
+    this.notifyService.showSuccess("Data shown successfully !!", "ItSolutionStuff.com")
+  }
+
+  showToasterError(){
+    this.notifyService.showError("Something is wrong", "ItSolutionStuff.com")
+  }
+
+  showToasterInfo(){
+    this.notifyService.showInfo("This is info", "ItSolutionStuff.com")
+  }
+
+  showToasterWarning(){
+    this.notifyService.showWarning("This is warning", "ItSolutionStuff.com")
+  }
+
+  showHtmlToaster(){
+    this.notifyService.showHTMLMessage("<h1>Data shown successfully !!</h1>", "Notification")
+  }
+
 }

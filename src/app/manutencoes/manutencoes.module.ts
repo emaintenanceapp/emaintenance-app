@@ -5,6 +5,9 @@ import { ManutencoesRoutingModule } from './manutencoes-routing.module';
 import { ManutencoesFormComponent } from './manutencoes-form/manutencoes-form.component';
 import { ManutencoesListaComponent } from './manutencoes-lista/manutencoes-lista.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -15,7 +18,12 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ManutencoesRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    NgxPaginationModule,
+    NgxMaskModule.forRoot({
+      validation: true,
+    })
   ],
   exports: [
     ManutencoesFormComponent,

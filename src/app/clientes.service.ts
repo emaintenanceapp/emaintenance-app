@@ -31,6 +31,10 @@ export class ClientesService {
     return this.http.get<HttpResponse<Cliente[]>>(`${this.apiURL}/lista-cliente/${this.authService.getUserName()}`);
   }
 
+  getClientesDropdow()  : Observable<any>{
+    return this.http.get<HttpResponse<Cliente[]>>(`${this.apiURL}/lista-cliente/`);
+  }
+
   getClienteById(id: number) : Observable<Cliente> {
     return this.http.get<any>(`${this.apiURL}/cliente/${id}`);
   }

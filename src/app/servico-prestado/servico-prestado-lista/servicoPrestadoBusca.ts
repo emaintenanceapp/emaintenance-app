@@ -2,9 +2,12 @@ import { Cliente } from '../../clientes/cliente';
 
 export class ServicoPrestadoBusca {
     id: number;
+    nome: string;
     descricao: string;
-    preco: number;
+    preco: string;
     data: string;
-    nomeCliente: string; 
-    idCliente: number;   
+    cliente: Cliente;
+    idUsuario: number;
+    dataCadastro: string;
+    dataAtualizacao: string;
 }
