@@ -20,14 +20,29 @@
                         [(ngModel)]="servicoPrestado.cliente" (blur)="onBlurMethod(servicoPrestado.cliente, clientes)">
                     <option value="">Selecione...</option>
                     <option *ngFor="let cliente of clientes" 
-                            [ngValue]="cliente">
+                            [ngValue]="cliente.id">
+                        {{ cliente.nome }} / {{ cliente | json}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Cliente: </label>
+                <select class="form-control" 
+                        [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="servicoPrestado.idCliente">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let cliente of clientes" 
+                            [ngValue]="cliente.id">
                         {{ cliente.nome }}
                     </option>
                 </select>
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">

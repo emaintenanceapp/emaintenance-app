@@ -32,7 +32,7 @@ export class ClientesService {
   }
 
   getClientesDropdow()  : Observable<any>{
-    return this.http.get<HttpResponse<Cliente[]>>(`${this.apiURL}/lista-cliente/`);
+    return this.http.get<HttpResponse<Cliente[]>>(`${this.apiURL}/${this.authService.getUserName()}`);
   }
 
   getClienteById(id: number) : Observable<Cliente> {

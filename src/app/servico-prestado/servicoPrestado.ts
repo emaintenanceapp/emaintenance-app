@@ -7,6 +7,7 @@ export class ServicoPrestado {
     preco: string;
     data: string;
     cliente: Cliente;
+    idCliente: number;
     idUsuario: number;
     dataCadastro: string;
     dataAtualizacao: string;

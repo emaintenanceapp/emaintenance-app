@@ -55,10 +55,11 @@ export class ServicoPrestadoFormComponent implements OnInit {
         }
     })
     this.clienteService
-    .getClientes()
+    .getClientesDropdow()
     .subscribe( response => {
       this.clientes = response.clientes ;
       });
+
   }
 
   onBlurMethod(cliente: any, clientes){
